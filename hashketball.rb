@@ -11,7 +11,7 @@ def game_hash
   hash[:away] = {:team_name => "Charlotte Hornets", :colors => ["Turquoise", "Purple"], :players => []}
   hash = populate_hornets(hash)
   
-  puts hash
+  return hash
 end
 
 def create_player(name, number, shoe, points, rebounds, assists, steals, blocks, dunks)
@@ -35,5 +35,8 @@ def populate_hornets(hash)
   hash[:away][:players] << create_player('Bismack Biyombo', 0, 16, 12, 4, 7, 22, 15, 10)
   hash[:away][:players] << create_player('Desagna Diop', 2, 14, 24, 12, 12,4, 5, 5)
   hash[:away][:players] << create_player('Ben Gordon', 8, 15, 33, 3, 2, 1, 1, 0)
+  hash[:away][:players] << create_player('Kemba Walker', 33, 15, 6, 12, 12, 7, 5, 12)
+  
+  return hash
 end
-game_hash
+#game_hash
