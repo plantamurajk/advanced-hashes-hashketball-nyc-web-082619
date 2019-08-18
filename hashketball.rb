@@ -7,6 +7,10 @@ def game_hash
   
   hash[:home] = {:team_name => "Brooklyn Nets", :colors => ["Black", "White"], :players => []}
   hash = populate_nets(hash)
+  
+  hash[:away] = {:team_name => "Charlotte Hornets", :colors => ["Turquoise", "Purple"], :players => []}
+  hash = populate_hornets(hash)
+  
   puts hash
 end
 
@@ -24,5 +28,12 @@ def populate_nets(hash)
   hash[:home][:players] << create_player('Jason Terry', 31, 15, 19, 2, 2, 4, 11, 1)
   
   return hash
+end
+
+def populate_hornets(hash)
+  hash[:away][:players] << create_player('Jeff Adrien', 4, 18, 10, 1, 1, 2, 7, 2)
+  hash[:away][:players] << create_player('Bismack Biyombo', 0, 16, 12, 4, 7, 22, 15, 10)
+  hash[:away][:players] << create_player('Desagna Diop', 2, 14, 24, 12, 12,4, 5, 5)
+  hash[:away][:players] << create_player('Ben Gordon', 8, 15, 33, 3, 2, 1, 1, 0)
 end
 game_hash
