@@ -133,6 +133,50 @@ def big_shoe_rebounds
   return biggest_shoe_player[:rebounds]
 end
 
+def most_points_scored
+  most_points = 0
+  most_points_player = {}
+  
+   game_hash.map  do |team, attributes|
+   counter = 0
+   while attributes[:players][counter] do
+     if attributes[:players][counter][:points] > most_points then
+       most_points = attributes[:players][counter][:points]
+       most_points_player = attributes[:players][counter][:player_name]
+     end
+     counter += 1
+   end
+  end
+  
+  return most_points_player
+end
+
+def winning_team
+  home_team = game_hash[:home]
+  away_team = game_hash[:away]
+  
+  home_team_points = 0
+  away_team_points = 0
+  
+   counter = 0
+   while home_team[:players][counter] do
+     home_team_points += home_team[:players][counter][:points] 
+     counter += 1
+   end
+   
+   counter = 0
+   while away_team[:players][counter] do
+     away_team_points += away_team[:players][counter][:points] 
+     counter += 1
+   end
+   
+   if home_team_points > away_team_points then
+     return home_team[:team_name]
+   elsif away_team_points > home_team_points then
+    return away_team[:team_name]
+  else return "Tie"
+end
+end
 
 def good_practices
   game_hash.each do |location, team_data|
@@ -150,4 +194,20 @@ def good_practices
   end
 end
 
-puts game_hash
+def player_with_longest_name
+  max_name_length = 0
+  longest_name_player = " "
+  
+   game_hash.map  do |team, attributes|
+   counter = 0
+   while attributes[:players][counter] do
+     if attributes[:players][counter][:player_name].length > max_name_length then
+       max_name_length = attributes[:players][counter][:player_name].length
+       longest_name_player = attributes[:players][counter][:player_name]
+     end
+     counter += 1
+   end
+  end
+  
+  return longest_name_player
+end
