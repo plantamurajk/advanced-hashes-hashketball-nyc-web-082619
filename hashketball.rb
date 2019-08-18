@@ -211,3 +211,21 @@ def player_with_longest_name
   
   return longest_name_player
 end
+
+def long_name_steals_a_ton?
+  most_steals = 0
+  most_steals_player = " "
+  
+   game_hash.map  do |team, attributes|
+   counter = 0
+   while attributes[:players][counter] do
+     if attributes[:players][counter][:steals] > most_steals then
+       most_steals = attributes[:players][counter][:steals]
+       most_steals_player = attributes[:players][counter][:player_name]
+     end
+     counter += 1
+   end
+  end
+  
+  return most_steals_player == player_with_longest_name
+end
