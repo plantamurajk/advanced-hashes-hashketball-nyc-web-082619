@@ -10,7 +10,7 @@ def game_hash
   
   hash[:away] = {:team_name => "Charlotte Hornets", :colors => ["Turquoise", "Purple"], :players => []}
   hash = populate_hornets(hash)
-  
+
   return hash
 end
 
@@ -33,10 +33,54 @@ end
 def populate_hornets(hash)
   hash[:away][:players] << create_player('Jeff Adrien', 4, 18, 10, 1, 1, 2, 7, 2)
   hash[:away][:players] << create_player('Bismack Biyombo', 0, 16, 12, 4, 7, 22, 15, 10)
-  hash[:away][:players] << create_player('Desagna Diop', 2, 14, 24, 12, 12,4, 5, 5)
+  hash[:away][:players] << create_player('DeSagna Diop', 2, 14, 24, 12, 12,4, 5, 5)
   hash[:away][:players] << create_player('Ben Gordon', 8, 15, 33, 3, 2, 1, 1, 0)
   hash[:away][:players] << create_player('Kemba Walker', 33, 15, 6, 12, 12, 7, 5, 12)
   
   return hash
 end
 #game_hash
+
+def num_points_scored(player)
+
+  game_hash.map  do |team, attributes|
+   counter = 0
+   while attributes[:players][counter] do
+     if attributes[:players][counter][:player_name] == player then
+       return attributes[:players][counter][:points]
+     end
+     counter += 1
+   end
+  end
+end
+
+def shoe_size(player)
+    game_hash.map  do |team, attributes|
+   counter = 0
+   while attributes[:players][counter] do
+     if attributes[:players][counter][:player_name] == player then
+       return attributes[:players][counter][:shoe]
+     end
+     counter += 1
+   end
+  end
+end
+
+
+def good_practices
+  game_hash.each do |location, team_data|
+    #are you ABSOLUTELY SURE what 'location' and 'team data' are? use binding.pry to find out!
+    binding.pry
+    team_data.each do |attribute, data|
+      #are you ABSOLUTELY SURE what 'attribute' and 'team data' are? use binding.pry to find out!
+      binding.pry
+ 
+      #what is 'data' at each loop throughout .each block? when will the following line of code work and when will it break?
+      data.each do |data_item|
+          binding.pry
+      end
+    end
+  end
+end
+
+puts game_hash
