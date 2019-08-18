@@ -55,7 +55,7 @@ def num_points_scored(player)
 end
 
 def shoe_size(player)
-    game_hash.map  do |team, attributes|
+   game_hash.map  do |team, attributes|
    counter = 0
    while attributes[:players][counter] do
      if attributes[:players][counter][:player_name] == player then
@@ -98,6 +98,39 @@ def player_numbers(team_name)
   end
   
   return jerseys
+end
+
+def player_stats(player_name)
+   stats = {}
+   game_hash.map  do |team, attributes|
+   counter = 0
+   while attributes[:players][counter] do
+     if attributes[:players][counter][:player_name] == player_name then
+       target = attributes[:players][counter]
+       stats = {:number => target[:number], :shoe => target[:shoe], :points => target[:points], :rebounds => target[:rebounds], :assists => target[:assists], :steals => target[:steals], :blocks => target[:blocks], :slam_dunks => target[:slam_dunks]}
+     end
+     counter += 1
+   end
+  end
+  return stats
+end
+
+def big_shoe_rebounds
+  biggest_shoe_size = 0
+  biggest_shoe_player = {}
+  
+   game_hash.map  do |team, attributes|
+   counter = 0
+   while attributes[:players][counter] do
+     if attributes[:players][counter][:shoe] > biggest_shoe_size then
+       biggest_shoe_size = attributes[:players][counter][:shoe]
+       biggest_shoe_player = attributes[:players][counter]
+     end
+     counter += 1
+   end
+  end
+  
+  return biggest_shoe_player[:rebounds]
 end
 
 
