@@ -74,6 +74,33 @@ def team_colors(team_name)
   end
 end
 
+def team_names
+  teams = []
+  
+  game_hash.map do |team, attributes|
+    teams  << attributes[:team_name]
+  end
+  
+  return teams
+end
+
+def player_numbers(team_name)
+  jerseys = []
+  
+  game_hash.map do |team, attributes|
+    if attributes[:team_name] == team_name then
+    counter = 0
+    while attributes[:players][counter] do
+     jerseys << attributes[:players][counter][:number]
+     counter += 1
+   end
+ end
+  end
+  
+  return jerseys
+end
+
+
 def good_practices
   game_hash.each do |location, team_data|
     #are you ABSOLUTELY SURE what 'location' and 'team data' are? use binding.pry to find out!
